@@ -208,25 +208,25 @@ export default function AdminProductsPage() {
         ) : (
           <div className="overflow-hidden rounded-2xl bg-white shadow-sm">
             <div className="overflow-x-auto">
-              <table className="min-w-full">
+              <table className="min-w-full table-fixed">
                 <thead className="bg-pink-100">
                   <tr>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
+                    <th className="w-24 px-4 py-3 text-left text-sm font-semibold text-gray-700">
                       Image
                     </th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
+                    <th className="w-64 px-4 py-3 text-left text-sm font-semibold text-gray-700">
                       Name
                     </th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
+                    <th className="w-64 px-4 py-3 text-left text-sm font-semibold text-gray-700">
                       Category
                     </th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
+                    <th className="w-32 px-4 py-3 text-left text-sm font-semibold text-gray-700">
                       Price
                     </th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
+                    <th className="w-24 px-4 py-3 text-left text-sm font-semibold text-gray-700">
                       Stock
                     </th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
+                    <th className="w-56 px-4 py-3 text-left text-sm font-semibold text-gray-700">
                       Actions
                     </th>
                   </tr>
@@ -244,28 +244,30 @@ export default function AdminProductsPage() {
                           />
                         </td>
 
-                        <td className="px-4 py-3 text-sm text-gray-700">
-                          {product.name}
+                        <td className="px-4 py-3 text-sm text-gray-700 align-top">
+                          <div className="line-clamp-2 leading-5 min-h-[40px]">
+                            {product.name}
+                          </div>
                         </td>
 
-                        <td className="px-4 py-3 text-sm text-gray-700">
-                          {product.Category?.name}
+                        <td className="px-4 py-3 text-sm text-gray-700 align-top">
+                          <div className="line-clamp-2 leading-5 min-h-[40px]">
+                            {product.Category?.name}
+                          </div>
                         </td>
 
-                        <td className="px-4 py-3 text-sm text-gray-700">
+                        <td className="px-4 py-3 text-sm text-gray-700 whitespace-nowrap align-top">
                           Rp {product.price?.toLocaleString("id-ID")}
                         </td>
 
-                        <td className="px-4 py-3 text-sm text-gray-700">
+                        <td className="px-4 py-3 whitespace-nowrap align-top">
                           {product.stock}
                         </td>
 
-                        <td className="px-4 py-3">
-                          <div className="flex flex-wrap gap-2">
+                        <td className="px-4 py-3 whitespace-nowrap">
+                          <div className="flex flex-nowrap gap-2">
                             <button
-                              onClick={() =>
-                                navigate(`/admin/products/edit/${product.id}`)
-                              }
+                              onClick={() => navigate(`/admin/products/edit/${product.id}`)}
                               className="rounded-lg bg-yellow-500 px-3 py-2 text-sm font-medium text-white hover:bg-yellow-600"
                             >
                               Edit
@@ -273,9 +275,7 @@ export default function AdminProductsPage() {
 
                             <button
                               onClick={() =>
-                                navigate(
-                                  `/admin/products/${product.id}/upload-image`
-                                )
+                                navigate(`/admin/products/${product.id}/upload-image`)
                               }
                               className="rounded-lg bg-blue-500 px-3 py-2 text-sm font-medium text-white hover:bg-blue-600"
                             >
