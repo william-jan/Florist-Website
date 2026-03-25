@@ -15,16 +15,17 @@ export default function Navbar() {
   const [pendingOrdersCount, setPendingOrdersCount] = useState(0)
   const [showLogoutModal, setShowLogoutModal] = useState(false)
 
-  function getRoleFromToken(token) {
+  function getPayloadFromToken(token) {
     try {
-      const payload = JSON.parse(atob(token.split(".")[1]))
-      return payload.role
+      return JSON.parse(atob(token.split(".")[1]))
     } catch (error) {
-      return ""
+      return {}
     }
   }
 
-  const userRole = access_token ? getRoleFromToken(access_token) : ""
+  const payload = access_token ? getPayloadFromToken(access_token) : {}
+  const userRole = payload.role || ""
+  const userName = payload.name || payload.email || ""
 
   function confirmLogout() {
     localStorage.clear()
@@ -105,6 +106,14 @@ export default function Navbar() {
         >
           Hunnyfloe
         </Link>
+
+        <div className="flex-1 text-center">
+          {access_token && (
+            <p className="text-sm font-medium text-gray-600">
+              Selamat datang, <span className="text-pink-600">{userName}</span>
+            </p>
+          )}
+        </div>
 
         <div className="flex items-center gap-3">
           {!access_token ? (
